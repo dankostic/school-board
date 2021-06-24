@@ -6,5 +6,11 @@
             "email": "dankokostic@yahoo.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "DB\\": "database/"
+        }
+    }
 }
