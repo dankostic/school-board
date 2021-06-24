@@ -1,4 +1,4 @@
-Domain is served on localhost on http://school-board.test/ as instructed, if needed I can upload app to my own cloud server.
+Domain is served on localhost on http://school.test/ as instructed.
 
 Steps:
 Add school-board.test to /etc/hosts
@@ -7,7 +7,7 @@ Create school-board.conf file in /etc/nginx/sites-available
 
 server {
     listen 80;
-    server_name school-board.test;
+    server_name school.test;
     root /var/www/html/school-board;
 
     index index.html index.htm index.php;

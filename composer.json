@@ -6,7 +6,9 @@
             "email": "dankokostic@yahoo.com"
         }
     ],
-    "require": {},
+    "require": {
+        "pecee/simple-router": "4.3.6.1"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
