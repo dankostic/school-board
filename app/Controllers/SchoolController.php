@@ -15,11 +15,11 @@ class SchoolController
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return string
      */
-    public function show($id): string
+    public function show(int $id): string
     {
-        return json_encode(School::singleStudent($id));
+        return json_encode(School::resource($id));
     }
 }
