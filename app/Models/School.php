@@ -26,6 +26,4 @@ class School
             echo 'Database error!' . $e->getMessage();
         }
     }
-
-
 }

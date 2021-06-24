@@ -17,11 +17,11 @@ class SchoolController
 
     /**
      * @param int $id
-     * @return string
+     * @return string|null
      */
-    public function show(int $id): string
+    public function show(int $id):? string
     {
         $board = SchoolRepository::checkStudentBoard($id);
-        return $board['board'] == 'csm' ?  json_encode(SchoolRepository::json($id)) : SchoolRepository::xml($id);
+        return $board['board'] == 'csm' ?  json_encode(SchoolRepository::json($id)) : SchoolRepository::parseXml(SchoolRepository::xml($id));
     }
 }
