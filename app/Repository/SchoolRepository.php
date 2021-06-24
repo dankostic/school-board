@@ -129,7 +129,10 @@ class SchoolRepository
      */
     private function result(array $average): string
     {
-        return (isset($average['averageGrade'])) >= 7 ? 'Pass' : "Fail";
+        if (!empty($average['averageGrade'])) {
+           return $average['averageGrade'] >= 7 ? 'Pass' : "Fail";
+        }
+        return $average['maxGrade'] > 8 ? 'Pass' : "Fail";
     }
 
     /**
@@ -160,10 +163,27 @@ class SchoolRepository
         }
     }
 
-    public static function parseXml($parse_xml)
+    /**
+     * @param array $parse_xml
+     * @return string
+     */
+    public static function parseXml(array $parse_xml): string
     {
-        $xml = new SimpleXMLElement('<root/>');
-        array_walk_recursive($parse_xml, array ($xml, 'addChild'));
-        print $xml->asXML();
+        return (new self)->array2xml($parse_xml);
+    }
+
+    /**
+     * @param array $parse_xml
+     * @param null $root
+     * @return string
+     * @throws \Exception
+     */
+    private function array2xml(array $parse_xml, $root = null): string
+    {
+        $xml = new SimpleXMLElement($root ? '<' . $root . '/>' : '<root/>');
+        array_walk_recursive($parse_xml, function($value, $key)use($xml){
+            $xml->addChild($key, $value);
+        });
+        return $xml->asXML();
     }
 }
