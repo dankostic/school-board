@@ -1,7 +1,7 @@
 <?php
 require_once('vendor/autoload.php');
 
-use App\Controllers\SchoolController;
+use function Composer\Autoload\includeFile;
 
-$school = new SchoolController();
-echo $school->index();
+includeFile('views/main.php');
+
