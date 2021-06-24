@@ -5,10 +5,6 @@ use DB\Connect;
 use PDO;
 use PDOException;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 /**
  * Class School
  * @package App\Models
@@ -16,16 +12,33 @@ error_reporting(E_ALL);
 class School
 {
     /**
-     * Test db connection/get students
-     * @return false|string
+     * Get list of all student
+     * @return array
      */
-    public static function students()
+    public static function students(): array
     {
         try {
             $sth = Connect::getInstance()->db->prepare("SELECT * FROM `students`");
             $sth->execute();
-            $results = $sth->fetchAll(PDO::FETCH_ASSOC);
-            return json_encode($results);
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            echo 'Database error!' . $e->getMessage();
+        }
+    }
+
+    /**
+     * Get single student
+     * @param int $id
+     * @return array
+     */
+    public static function singleStudent(int $id): array
+    {
+        try {
+            $sth = Connect::getInstance()->db->prepare("SELECT * FROM `students` WHERE id = {$id}");
+            $sth->bindParam(':id', $id);
+            $sth->execute();
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
             echo 'Database error!' . $e->getMessage();

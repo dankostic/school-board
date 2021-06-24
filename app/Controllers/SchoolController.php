@@ -9,10 +9,17 @@ use App\Models\School;
  */
 class SchoolController
 {
-
-
-    public function students()
+    public function index(): string
     {
-        return School::students();
+        return json_encode(School::students());
+    }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function show($id): string
+    {
+        return json_encode(School::singleStudent($id));
     }
 }
