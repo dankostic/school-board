@@ -8,7 +8,6 @@ includeFile('views/layouts/header.php');
 ?>
     <body>
     <div class="container">
-        <?= $school->index() ?>
     </div>
     </body>
 <?php

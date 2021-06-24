@@ -9,7 +9,9 @@ use App\Models\School;
  */
 class SchoolController
 {
-    public function index()
+
+
+    public function students()
     {
         return School::students();
     }
