@@ -20,6 +20,6 @@ class SchoolController
      */
     public function show(int $id): string
     {
-        return json_encode(School::resource($id));
+        return json_encode(School::show($id));
     }
 }
